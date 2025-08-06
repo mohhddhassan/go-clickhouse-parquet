@@ -5,7 +5,7 @@ It also comes with a **Docker Compose** setup for easy local ClickHouse deployme
 
 ---
 
-## 🐳 What’s Inside?
+## 📦 What’s Inside?
 
 * **Python** script to generate sample Parquet data (`generate_parquet.py`)
 * **Go** application to read the Parquet file and insert data into ClickHouse (`main.go`)
