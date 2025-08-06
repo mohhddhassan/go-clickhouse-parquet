@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest
+    ports:
+      - "9000:9000"
+      - "8123:8123"
+    volumes:
+      - ./clickhouse_data:/var/lib/clickhouse
