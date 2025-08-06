@@ -1,133 +1,42 @@
-# ClickHouse Parquet Loader
+# Go + Python Parquet to ClickHouse 🚀
 
-A simple project to:
-
-1. Generate sample data and export it as a Parquet file using Python.
-2. Read the Parquet file using Go and insert the data into ClickHouse running inside Docker.
+This project demonstrates how to **generate Parquet files using Python** and **ingest them into ClickHouse** using a **Go application**.
+It also comes with a **Docker Compose** setup for easy local ClickHouse deployment.
 
 ---
 
-## 📂 Project Structure
+## 🐳 What’s Inside?
 
-```
-clickhouse-parquet-loader/
-│
-├── docker-compose.yml        # Runs ClickHouse in Docker# Go ClickHouse Parquet Loader
-
-A lightweight utility built in Go to read data from Parquet files and insert it into [ClickHouse](https://clickhouse.com).
-
-## Features
-
-* Reads data from Parquet files using [parquet-go](https://github.com/xitongsys/parquet-go)
-* Inserts data into ClickHouse via the official [ClickHouse Go driver](https://github.com/ClickHouse/clickhouse-go)
-* Handles automatic table creation (if it doesn’t exist)
-* Clean and minimal setup with Dockerized ClickHouse
+* **Python** script to generate sample Parquet data (`generate_parquet.py`)
+* **Go** application to read the Parquet file and insert data into ClickHouse (`main.go`)
+* **Docker Compose** file to spin up ClickHouse quickly
+* A sample Parquet file (`sample.parquet`) for quick testing
 
 ---
 
-## Project Structure
+## 🔧 Getting Started
 
-```
-go-clickhouse-parquet/
-├── go/                # Main Go code
-│   ├── main.go        # Entry point
-│   ├── model.go       # Structs mapped to Parquet
-│   └── loader.go      # ClickHouse interaction
-├── .gitignore
-└── README.md
-```
-
----
-
-## Prerequisites
-
-* [Go 1.20+](https://go.dev/dl/)
-* [Docker](https://www.docker.com/) (for ClickHouse)
-* Parquet file(s) to test with
-
----
-
-## Setup
-
-### **1. Clone Repo**
+### 1. Clone the repo
 
 ```bash
-git clone https://github.com/<your-username>/go-clickhouse-parquet.git
-cd go-clickhouse-parquet/go
+git clone https://github.com/mohhddhassan/go-clickhouse-parquet.git
+cd go-clickhouse-parquet
 ```
 
-### **2. Install Dependencies**
-
-```bash
-go mod tidy
-```
-
-### **3. Run ClickHouse with Docker**
-
-```bash
-docker run -d --name clickhouse-server \
-    -p 9000:9000 -p 8123:8123 clickhouse/clickhouse-server:23.11
-```
-
-### **4. Run the App**
-
-```bash
-go run main.go
-```
-
----
-
-## Configuration
-
-Modify database connection parameters in `main.go`:
-
-```go
-const (
-    clickhouseHost = "localhost"
-    clickhousePort = 8080
-    clickhouseUser = "default"
-    clickhousePassword = ""
-    clickhouseDB = "default"
-)
-```
-
----
-
-## License
-
-MIT License © 2025 Mohamed Hussain S
-
-│
-├── python/                   # Python script for data generation
-│   └── generate_parquet.py
-│
-├── go/                       # Go code to read parquet and insert into ClickHouse
-│   ├── go.mod
-│   ├── go.sum
-│   └── main.go
-│
-└── parquet-files/            # Generated parquet files
-    └── sample.parquet
-```
-
----
-
-## 🚀 How to Run
-
-### 1. Start ClickHouse
-
-```bash
-docker-compose up -d
-```
-
-### 2. Generate Parquet File (Python)
+### 2. Generate a sample Parquet file
 
 ```bash
 cd python
 python3 generate_parquet.py
 ```
 
-### 3. Insert Data into ClickHouse (Go)
+### 3. Start ClickHouse using Docker Compose
+
+```bash
+docker-compose up -d
+```
+
+### 4. Run the Go app to insert data into ClickHouse
 
 ```bash
 cd go
@@ -136,21 +45,31 @@ go run main.go
 
 ---
 
-## 🛠 Tech Stack
+## 📂 File Structure
 
-* **Python** – Parquet file generation (`pandas`, `pyarrow`)
-* **Go** – Reading parquet (`github.com/xitongsys/parquet-go`) & inserting into ClickHouse
-* **ClickHouse** – Columnar database
-* **Docker** – Containerized setup
+```
+go-clickhouse-parquet/
+├── docker-compose.yml
+├── parquet-files/
+│   └── sample.parquet
+├── python/
+│   └── generate_parquet.py
+└── go/
+    ├── go.mod
+    ├── go.sum
+    └── main.go
+```
 
 ---
 
-## 🤝 Contributing
+## 🧠 What I Learned
 
-Feel free to fork this repo, improve it, and open pull requests.
+* Working with **Parquet files** programmatically
+* Using **Go to interact with ClickHouse**
+* Deploying **ClickHouse with Docker Compose**
 
 ---
 
-## 📜 License
+## 📝 Notes
 
-MIT License
+This is a **beginner-friendly experiment** for exploring Python (data generation), Go (ETL), and ClickHouse (OLAP database). Future improvements may include streaming pipelines and handling larger datasets.
